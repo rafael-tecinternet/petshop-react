@@ -8,7 +8,7 @@ const ListaPosts = () => {
   const [posts, setPosts] = useState([]);
 
   console.log(serverApi);
-  const postsTemp = [];
+
   useEffect(() => {
     async function getPosts() {
       try {
@@ -20,11 +20,21 @@ const ListaPosts = () => {
       }
     }
     getPosts();
-  });
+  }, []);
+  /* Sobre o use Effect:
+  Este Hook visa permitir um maior controle sobre "efeitos colaterais"
+  na execução do componente.
+  Recebe dois parâmetros:
+  1º: função callback com que será executado
+  2º: lista de dependências que indicarão ao useEffect quando ele deverá funcionar
+  -Se não passar a lista (ou seja, se deixar sem os []), useEffect executará toda
+  vez que o componente for renderizado.Portanto, o callback se torna um loop infinito.
+  -Se passa a lista (ou seja, deixar o [] vazio), use Effect executará somento no 
+  momento que o componente é renderizado pela primeira vez, evitando o loop infinito do callback. */
 
   return (
     <div className={estilos.lista_posts}>
-      {postsTemp.map(({ id, titulo, subtitulo }) => (
+      {posts.map(({ id, titulo, subtitulo }) => (
         <article className={estilos.post} key={id}>
           <h3> {titulo} </h3>
           <p>{subtitulo}</p>
