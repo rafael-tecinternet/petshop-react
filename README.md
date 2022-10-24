@@ -95,4 +95,14 @@ OBS.: se tiver problemas ao executar, utilize o **Node.js command prompt**
 
 OBS.: o número da porta deve ser diferente de 3000 (que é padrão no json-server) pois esta porta já estará sendo usada pelo app **React**.
 
-Dica: no **package.json** do seu app adicione em `scripts` uma nova propriedade chamada `api` valendo `json-server --watch nome-do-arquivo.json --port 3001`. Desta forma, você poderá executar o server da API digitando simplesmente `npm run api`
+Dica: no **package.json** do seu app adicione em `scripts` uma nova propriedade chamada `api` valendo `json-server --watch nome-do-arquivo.json --port 3001`. Desta forma, você poderá executar o server da API digitando simplesmente `npm run api`.
+
+Após a execução da API, cada array de objetos contido no **arquivo.json** se torna um `endpoint` da API, acessível através da URL: _Localhost:porta/nome-do-endpoint_.
+
+Exemplos:
+
+`http://localhost:3001/categorias`
+
+`http://localhost:3001/posts`
+
+`http://localhost:3001/contatos`
