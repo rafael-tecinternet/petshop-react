@@ -6,21 +6,25 @@ const ListaPosts = () => {
   para posteriormente "preenchê-lo" com os  dados vindos da API.
   Esta atribuição será feita com auxílio do setPosts. */
   const [posts, setPosts] = useState([]);
-
-  console.log(serverApi);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function getPosts() {
       try {
         const resposta = await fetch(`${serverApi}/posts`);
         const dados = await resposta.json();
         setPosts(dados);
+        setLoading(false);
       } catch (error) {
         console.log("Deu ruim! " + error.message);
       }
     }
     getPosts();
   }, []);
+  if (loading) {
+    return <mark>Cerregando....</mark>;
+  } else {
+    return <mark>Carregado!</mark>;
+  }
   /* Sobre o use Effect:
   Este Hook visa permitir um maior controle sobre "efeitos colaterais"
   na execução do componente.
