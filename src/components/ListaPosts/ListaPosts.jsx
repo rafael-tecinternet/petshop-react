@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"; // Hooks do React
 import serverApi from "../../api/servidor-api";
 import estilos from "./ListaPosts.module.css";
+import LoadingPacman from "../LoadingPacman/LoadingPacman";
 const ListaPosts = () => {
   /* Iniciamos o state do componente com um array vazio,
   para posteriormente "preenchê-lo" com os  dados vindos da API.
@@ -21,9 +22,7 @@ const ListaPosts = () => {
     getPosts();
   }, []);
   if (loading) {
-    return <mark>Cerregando....</mark>;
-  } else {
-    return <mark>Carregado!</mark>;
+    return <LoadingPacman />;
   }
   /* Sobre o use Effect:
   Este Hook visa permitir um maior controle sobre "efeitos colaterais"
