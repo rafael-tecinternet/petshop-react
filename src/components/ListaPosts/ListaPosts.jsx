@@ -41,6 +41,7 @@ const ListaPosts = () => {
       {posts.map(({ id, titulo, subtitulo }) => (
         <ArtigoPost
           key={id}
+          id={id}
           titulo={titulo}
           subtitulo={subtitulo}
           classe={estilos.post}
