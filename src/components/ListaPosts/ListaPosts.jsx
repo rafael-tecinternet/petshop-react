@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"; // Hooks do React
 import serverApi from "../../api/servidor-api";
 import estilos from "./ListaPosts.module.css";
 import LoadingPacman from "../LoadingPacman/LoadingPacman";
+import ArtigoPost from "../ArtigoPost/ArtigoPost";
 const ListaPosts = () => {
   /* Iniciamos o state do componente com um array vazio,
   para posteriormente "preenchê-lo" com os  dados vindos da API.
@@ -38,10 +39,12 @@ const ListaPosts = () => {
   return (
     <div className={estilos.lista_posts}>
       {posts.map(({ id, titulo, subtitulo }) => (
-        <article className={estilos.post} key={id}>
-          <h3> {titulo} </h3>
-          <p>{subtitulo}</p>
-        </article>
+        <ArtigoPost
+          key={id}
+          titulo={titulo}
+          subtitulo={subtitulo}
+          classe={estilos.post}
+        />
       ))}
     </div>
   );
