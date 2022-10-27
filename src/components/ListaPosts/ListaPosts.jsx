@@ -3,7 +3,7 @@ import serverApi from "../../api/servidor-api";
 import estilos from "./ListaPosts.module.css";
 import LoadingPacman from "../LoadingPacman/LoadingPacman";
 import ArtigoPost from "../ArtigoPost/ArtigoPost";
-const ListaPosts = () => {
+const ListaPosts = (props) => {
   /* Iniciamos o state do componente com um array vazio,
   para posteriormente "preenchê-lo" com os  dados vindos da API.
   Esta atribuição será feita com auxílio do setPosts. */
@@ -12,7 +12,8 @@ const ListaPosts = () => {
   useEffect(() => {
     async function getPosts() {
       try {
-        const resposta = await fetch(`${serverApi}/posts`);
+        /* const resposta = await fetch(`${serverApi}/posts`); */
+        const resposta = await fetch(`${serverApi}/${props.url || "posts"}`);
         const dados = await resposta.json();
         setPosts(dados);
         setLoading(false);
@@ -21,7 +22,9 @@ const ListaPosts = () => {
       }
     }
     getPosts();
-  }, []);
+  }, [props.url]); /* É necessário indicar a url como dependência pois ela
+  muda toda vez em que uma categoria é clicada. Desta forma, o UseEffect "entende" que ele deve executar novamente as suas ações (neste caso,
+  executar novamente o fetch na API) */
   if (loading) {
     return <LoadingPacman />;
   }

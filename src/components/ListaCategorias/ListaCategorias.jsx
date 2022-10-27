@@ -30,7 +30,7 @@ const ListaCategorias = () => {
         {categorias.map(({ id, nome }) => {
           return (
             <li key={id}>
-              <Link to={`categoria/${nome}`}> {nome} </Link>
+              <Link to={`/categoria/${nome}`}> {nome} </Link>
             </li>
           );
         })}
