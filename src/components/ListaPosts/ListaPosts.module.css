@@ -30,3 +30,6 @@ do teclado, também acionará a transformação */
 .post:hover {
   transform: scale(1.05);
 }
+.semPost {
+  text-align: center;
+}

@@ -28,3 +28,8 @@
 .lista_categorias a:focus {
   background-color: #2f88a8;
 }
+
+.lista_categorias a.ativo {
+  /* background-color: red; */
+  background-color: var(--cor-primaria-fundo-hover);
+}

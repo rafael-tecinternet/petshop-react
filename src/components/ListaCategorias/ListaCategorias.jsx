@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import serverApi from "../../api/servidor-api";
 import LoadingPacman from "../LoadingPacman/LoadingPacman";
 import estilos from "./ListaCategorias.module.css";
@@ -20,7 +20,7 @@ const ListaCategorias = () => {
     }
     getCategorias();
   }, []);
-  if (loading) return <LoadingPacman />;
+  if (loading) return <LoadingPacman carregando={"Carregando Categorias..."} />;
   return (
     <div className={estilos.lista_categorias}>
       <ul>
@@ -30,7 +30,12 @@ const ListaCategorias = () => {
         {categorias.map(({ id, nome }) => {
           return (
             <li key={id}>
-              <Link to={`/categoria/${nome}`}> {nome} </Link>
+              <NavLink
+                to={`/categoria/${nome}`}
+                activeClassName={estilos.ativo}
+              >
+                {nome}
+              </NavLink>
             </li>
           );
         })}

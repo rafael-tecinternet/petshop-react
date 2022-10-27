@@ -33,7 +33,7 @@ const Post = () => {
     getPost();
   }, [id]); /* id é uma dependência para o useEffect */
   if (loading) {
-    return <LoadingPacman />;
+    return <LoadingPacman carregando={"Carregando Post..."} />;
   }
   return (
     <section>

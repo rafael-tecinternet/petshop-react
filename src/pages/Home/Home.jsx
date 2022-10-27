@@ -7,6 +7,8 @@ const Home = () => {
       <h2 className={estilos.titulo_secao}>Pet Notícias</h2>
       <ListaCategorias />
       <ListaPosts />
+      {/* Solução 2
+       <ListaPosts url="posts"/> */}
     </section>
   );
 };
