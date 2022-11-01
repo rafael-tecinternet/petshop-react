@@ -38,7 +38,7 @@ const Post = () => {
       }
     }
     getPost();
-  }, [id]); /* id é uma dependência para o useEffect */
+  }, [id, history]); /* id é uma dependência para o useEffect */
 
   if (loading) return <LoadingDesenho texto="conteúdo do post..." />;
 
