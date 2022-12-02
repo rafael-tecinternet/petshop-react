@@ -4,7 +4,7 @@ import serverApi from "../../api/servidor-api";
 import ArtigoPost from "../ArtigoPost/ArtigoPost";
 import LoadingDesenho from "../LoadingDesenho/LoadingDesenho";
 import estilos from "./ListaPosts.module.css";
-const ListaPosts = ({ url }) => {
+const ListaPosts = ({ categoria }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,18 @@ const ListaPosts = ({ url }) => {
             categoria: dados[post].categoria,
           };
           listaDePosts.push(objetoPost);
+          /* Se categoria for escolhida/clicada */
+          if (categoria) {
+            /* Então vamos faer uma lista de posts com filtro de categoria */
+            /* A cada vez que o loop for é executado,
+            pegamos a categoria de cada post e comparamos com a 
+            categoria escolhida pelo usuário. */
+            listaDePosts = listaDePosts.filter(
+              /* Se esta comparação for verdadeira, guardamos o post
+              na listaDePosts, Caso contrário, é descartado pelo filtro */
+              (cadaPost) => cadaPost.categoria === categoria
+            );
+          }
         }
         setPosts(listaDePosts);
         setLoading(false);
@@ -37,7 +49,7 @@ const ListaPosts = ({ url }) => {
     
     Desta forma, o useEffect "entende" que ele deve executar novamente
     as suas ações (neste caso, executar novamente o fetch na API) */
-  }, [url]);
+  }, [categoria]);
 
   if (loading) {
     return <LoadingDesenho texto="posts..." />;
