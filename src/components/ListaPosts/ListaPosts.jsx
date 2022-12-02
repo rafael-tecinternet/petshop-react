@@ -12,19 +12,20 @@ const ListaPosts = ({ url }) => {
     setLoading(true);
     async function getPosts() {
       try {
-        // const resposta = await fetch(`${serverApi}/posts`);
-
-        // Solução Guilherme
-        // const resposta = await fetch(`${serverApi}/${url || "posts"}`);
-
-        // Solução Adriel
-        /* const resposta = await fetch(
-          `${serverApi}/${url != undefined ? url : "posts"}`
-        ); */
-
-        const resposta = await fetch(`${serverApi}/${url}`);
+        const resposta = await fetch(`${serverApi}/posts.json`);
         const dados = await resposta.json();
-        setPosts(dados);
+        let listaDePosts = [];
+        for (const post in dados) {
+          const objetoPost = {
+            id: post /* a CHAVE/STRING GERADA PELO FIREBASE SERÁ COMO UM ID */,
+            titulo: dados[post].titulo,
+            subtitulo: dados[post].subtitulo,
+            descricao: dados[post].descricao,
+            categoria: dados[post].categoria,
+          };
+          listaDePosts.push(objetoPost);
+        }
+        setPosts(listaDePosts);
         setLoading(false);
       } catch (error) {
         console.log("Deu ruim! " + error.message);
