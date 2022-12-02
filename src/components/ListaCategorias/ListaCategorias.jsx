@@ -15,16 +15,18 @@ Obs.: o que colocamos no useState representa o valor inicial */
   useEffect(() => {
     async function getCategorias() {
       try {
-        const resposta = await fetch(`${serverApi}/categorias`);
+        const resposta = await fetch(`${serverApi}/categorias.json`);
         const dados = await resposta.json();
+        const listaDeCategorias = [];
+        for (const categoria in dados) {
+          const objetoCategoria = {
+            id: categoria,
+            nome: dados[categoria].nome,
+          };
+          listaDeCategorias.push(objetoCategoria);
+        }
         setLoading(false);
-
-        /* Precisamos passar os dados capturador da API
-        para o state do componente via Setter (obrigatório!) */
-        setCategorias(dados);
-
-        /* teste do state de categorias */
-        console.log(dados);
+        setCategorias(listaDeCategorias);
       } catch (error) {
         console.log("Deu ruim! " + error.message);
       }
