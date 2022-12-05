@@ -73,5 +73,15 @@ const ListaPosts = ({ categoria }) => {
     </div>
   );
 };
+{
+  
+    /* fetch ou axios
+1) fazer fecth ou axios no endpoint receitas: https://teste-projeto-45753-default-rtdb.firebaseio.com/receitas.json
+2) isso vai retornar um objetão de receitas
+3) fazer um loop em cima pra extrair os dados de cada receita
+4) colocar dentro do componente usando setter
+/* Image style={estilos.logo} source={`assets/imagens/${imagem}`} /> */
 
+*/
+}
 export default ListaPosts;
