@@ -1,22 +1,19 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import serverApi from "../../api/servidor-api";
 import { useHistory } from "react-router-dom";
+import serverApi from "../../api/servidor-api";
+
 import Caixa from "../../components/Caixa/Caixa";
 import estilos from "./Contato.module.css";
 
 const Contato = () => {
-  /* Eventos/Funções para captura da digitação nos campos */
   const inputNome = (event) => setNome(event.target.value);
   const inputEmail = (event) => setEmail(event.target.value);
   const inputMensagem = (event) => setMensagem(event.target.value);
 
-  /* Hook useState para manipular os estados dos dados do componente */
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [mensagem, setMensagem] = useState("");
-
-  /* Hook necessário para criar uma navegação/redirecionamento manualmente (ou seja, sem depender dous routes) */
   let history = useHistory();
 
   const enviarContato = async (event) => {
@@ -30,23 +27,15 @@ const Contato = () => {
       },
     };
 
-    /* Script para envio dos dados para a API */
     try {
-      await fetch(`${serverApi}/contatos`, opcoes);
+      await fetch(`${serverApi}/contatos.json`, opcoes);
       alert("Dados enviados!");
-      history.push("/"); /* redirecionar oara a "home/blog" */
+      history.push("/");
     } catch (error) {
       console.log("Deu ruim: " + error.message);
     }
   };
 
-  // let desabilitado = nome === "" || email === "" || mensagem === "";
-
-  /* "Toggle" do botão: caso qualquer uma das variáveis seja undefined,
-  desabilitado se manterá true e com isso o botão ficará desabilitado.
-  
-  Quando todas deixarem de ser undefined, desabilitado se tornará false e
-  com isso o botão será habilitado. */
   let desabilitado = !nome || !email || !mensagem;
 
   return (
